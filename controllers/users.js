@@ -34,6 +34,9 @@ const registration = async (req, res, next) => {
   }
 
   try {
+
+    //TODO: Send email for verify user
+
     const newUser = await Users.createUser({
       name,
       email,
@@ -63,7 +66,7 @@ const login = async (req, res, next) => {
   const user = await Users.findByEmail(email);
   const isValidPassword = await user?.isValidPassword(password);
 
-  if (!user || !isValidPassword) {
+  if (!user || !isValidPassword || !user?.isVerified) {
     return res.status(UNAUTHORIZED).json({
       status: 'error',
       code: UNAUTHORIZED,
@@ -108,11 +111,6 @@ const uploadAvatar = async (req, res, next) => {
   const uploadService = new UploadService(destination);
   const avatarURL = await uploadService.save(file, id);
   await Users.updateAvatar(id, avatarURL);
-  // try {
-  //   await fs.unlink(file.path)
-  // } catch (err) {
-  //   console.log(err.message);
-  // }
 
   return res.status(OK).json({
     status: 'success',
@@ -121,10 +119,21 @@ const uploadAvatar = async (req, res, next) => {
   });
 };
 
+
+const verifyUser = async (req, res, next) => {
+
+};
+
+const repeatEmailForVerifyUser = async (req, res, next) => {
+
+};
+
 module.exports = {
   registration,
   login,
   logout,
   getCurrentUser,
   uploadAvatar,
+  verifyUser,
+  repeatEmailForVerifyUser
 };
