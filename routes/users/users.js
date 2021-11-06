@@ -12,8 +12,9 @@ const {
 const guard = require('../../helpers/guard');
 const loginLimit = require('../../helpers/rateLimitLogin');
 const upload = require('../../helpers/uploads');
+const wrapError = require('../../helpers/errorHandler');
 
-router.get('/verify/:token', verifyUser);
+router.get('/verify/:token', wrapError(verifyUser));
 router.post('/verify', repeatEmailForVerifyUser);
 
 router.post('/signup', registration);

@@ -46,11 +46,11 @@ const userSchema = new Schema(
     isVerified: {
       type: Boolean,
       default: false,
-      verifyToken: {
-        type: String,
-        required: true,
-        default: crypto.randomUUID(),
-      },
+    },
+    verifyToken: {
+      type: String,
+      required: true,
+      default: crypto.randomUUID(),
     },
   },
   {

@@ -1,4 +1,4 @@
-const MaiLgen = require('mailgen');
+const Mailgen = require('mailgen');
 
 class EmailService {
   constructor(env, sender) {
@@ -6,7 +6,7 @@ class EmailService {
 
     switch (env) {
       case 'devalopment':
-        this.link = 'http://localhost:3000';
+        this.link = 'http://7cdc-185-19-6-75.ngrok.io';
         break;
 
       case 'production':
@@ -14,6 +14,7 @@ class EmailService {
         break;
 
       default:
+        this.link = 'http://7cdc-185-19-6-75.ngrok.io';
         break;
     }
   }
