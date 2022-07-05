@@ -1,4 +1,4 @@
-## Node.js HW-4-Autorization
+## Node.js HW-6-Email
 
 ### Команды:
 
